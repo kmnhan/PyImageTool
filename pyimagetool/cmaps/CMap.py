@@ -48,7 +48,12 @@ MPL_NAMES = {
     'gist_heat': 'gist_heat',
     'gist_rainbow': 'gist_rainbow',
     'jet': 'jet',
-    'nipy_spectral': 'nipy_spectral'
+    'nipy_spectral': 'nipy_spectral',
+    'gray': 'gray', 'gist_gray': 'gist_gray', 'binary': 'binary', 'gist_yarg': 'gist_yarg',
+    'Blues': 'Blues', 'Blues_r': 'Blues_r',
+    'Spectral': 'Spectral', 'Spectral_r': 'Spectral_r',
+    'terrain': 'terrain',
+    'terrain_r': 'terrain_r',
 }
 
 modulepath = Path(__file__).parent
