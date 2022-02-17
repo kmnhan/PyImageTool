@@ -53,7 +53,7 @@ class CMapEditor(QtWidgets.QWidget):
         self.gamma_spinbox = QtWidgets.QDoubleSpinBox()
         self.gamma_spinbox.setMinimumSize(50, 0)
         self.gamma_spinbox.setRange(10**-2, 10**2)
-        self.gamma_spinbox.setValue(1)
+        self.gamma_spinbox.setValue(0.5)
         self.gamma_spinbox.setSingleStep(0.1)
         self.gamma_slider = QtWidgets.QSlider(QtCore.Qt.Horizontal)
         self.gamma_slider.setTickPosition(QtWidgets.QSlider.TicksBelow)
@@ -62,7 +62,7 @@ class CMapEditor(QtWidgets.QWidget):
         gamma_step = 1
         self.gamma_slider.setMinimum(gamma_min)
         self.gamma_slider.setMaximum(gamma_max)
-        self.gamma_slider.setValue(0)
+        self.gamma_slider.setValue(round(20*np.log10(self.gamma_spinbox.value())))
         self.enable_isocurve_layout = QtWidgets.QHBoxLayout()
         self.enable_isocurve_checkbox = QtWidgets.QCheckBox()
         self.enable_isocurve_checkbox.setChecked(True)
@@ -97,7 +97,7 @@ class CMapEditor(QtWidgets.QWidget):
         #         cmap_name = os.path.splitext(filename)[0]
         #         self.cmap_combobox.addItem(QtGui.QIcon('cmaps' + os.sep + cmap_name + '.jpg'), cmap_name)
         self.cmap_combobox.setIconSize(QtCore.QSize(64, 12))
-        self.cmap_combobox.setCurrentText('blue_orange')
+        self.cmap_combobox.setCurrentText('viridis')
         def update_cmap(cmap_name):
             self.pg_win.load_ct(cmap_name)
             self.pg_win.update()
@@ -114,7 +114,7 @@ class CMapEditor(QtWidgets.QWidget):
         self.load_map_button.clicked.connect(self.load_cmap_clicked)
 
         # Initialize
-        update_cmap('blue_orange')
+        update_cmap('viridis')
 
         # Add widgets
         self.header_layout.addLayout(self.cmap_norm_layout)
@@ -261,9 +261,9 @@ class PGCMapEditor(pg.GraphicsLayoutWidget):
         super().__init__(parent)
 
         self.lut = np.empty((256, 3), dtype=np.uint8)
-        self.ct = CMap().load_ct('blue_orange')
-        self.ct_name = 'blue_orange'
-        self.gamma = 1
+        self.ct = CMap().load_ct('viridis')
+        self.ct_name = 'viridis'
+        self.gamma = 0.5
         self.cmap_piecewise = False
 
         # make image view
@@ -320,8 +320,8 @@ class PGCMapEditor(pg.GraphicsLayoutWidget):
 
         # add menus to the histogram line
         self.histogram.vb.menu.addSeparator()
-        self.add_point_action: QtWidgets.QAction = self.histogram.vb.menu.addAction('Add point')
-        self.rm_point_action: QtWidgets.QAction = self.histogram.vb.menu.addAction('Remove point')
+        self.add_point_action: QtGui.QAction = self.histogram.vb.menu.addAction('Add point')
+        self.rm_point_action: QtGui.QAction = self.histogram.vb.menu.addAction('Remove point')
         self.rm_point_action.setEnabled(False)
         self.add_point_action.triggered.connect(self.add_piecewise_point)
 

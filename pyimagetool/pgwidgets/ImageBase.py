@@ -17,7 +17,7 @@ class ImageBase(pg.PlotItem):
         """
         super().__init__(**kwargs)
 
-        self.baselut = CMap().load_ct(kwargs.pop('lut', 'blue_orange'))
+        self.baselut = CMap().load_ct(kwargs.pop('lut', 'viridis'))
         self.lut = np.copy(self.baselut)
 
         self.img = pg.ImageItem(parent=self, lut=self.lut)

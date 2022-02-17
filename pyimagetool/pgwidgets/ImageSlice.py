@@ -25,11 +25,11 @@ class ImageSlice(ImageBase):
         # -------------
         self.cmap_menu = QtWidgets.QMenu('Color Map')
         # Reset colormap
-        self.cmap_reset_action = QtWidgets.QAction('Reset')
+        self.cmap_reset_action = QtGui.QAction('Reset')
         self.cmap_reset_action.triggered.connect(self.cmap_reset)
         self.cmap_menu.addAction(self.cmap_reset_action)
         # Scale to view
-        self.cmap_to_view_action = QtWidgets.QAction('Scale to view')
+        self.cmap_to_view_action = QtGui.QAction('Scale to view')
         self.cmap_to_view_action.triggered.connect(self.cmap_to_range)
         self.cmap_menu.addAction(self.cmap_to_view_action)
         # Change colormap
@@ -40,13 +40,13 @@ class ImageSlice(ImageBase):
             imgbase.baselut = ct
             imgbase.set_lut(ct)
         for name in CMap().cmaps:
-            action = QtWidgets.QAction(name)
+            action = QtGui.QAction(name)
             action.triggered.connect(partial(callback_prototype, self, name))
             self.change_cmap_actions.append(action)
             self.change_cmap_menu.addAction(action)
         self.cmap_menu.addMenu(self.change_cmap_menu)
         # Edit colormap
-        self.edit_cmap_action = QtWidgets.QAction('Edit Color Map')
+        self.edit_cmap_action = QtGui.QAction('Edit Color Map')
         self.edit_cmap_action.triggered.connect(self.edit_cmap)
         self.cmap_menu.addAction(self.edit_cmap_action)
         self.menu.addMenu(self.cmap_menu)

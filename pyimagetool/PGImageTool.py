@@ -47,7 +47,7 @@ class PGImageTool(pg.GraphicsLayoutWidget):
 
         # Properties for color map
         self.ct: np.array = np.array([])
-        self.ct_name: str = 'blue_orange'
+        self.ct_name: str = 'viridis'
 
         # Properties for tracking the mouse
         self.mouse_pos: QtCore.QPointF = QtCore.QPointF(0, 0)
