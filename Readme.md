@@ -40,7 +40,7 @@ Activate your virtual environment and change into the ``src`` directory where ``
 pip install .
 ```
 
-*Important*: You should test ``pyqtgraph`` by opening python and running ``import pyqtgraph.examples; pyqtgraph.examples.run()``. If you have never installed PyQt before, you need to install either ``pip install PyQt5`` or ``pip install PySide2``.
+*Important*: You should test ``pyqtgraph`` by opening python and running ``import pyqtgraph.examples; pyqtgraph.examples.run()``. If you have never installed PyQt before, you need to install either ``pip install PyQt6`` or ``pip install PySide6``.
 
 You can test the install using ``pytest``. Install the ``pytest`` package and then run ``test_PyImageTool.py`` in the ``tests`` subfolder.
 ```

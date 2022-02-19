@@ -1,6 +1,6 @@
 import pytest
 import numpy as np
-from PyQt5 import QtWidgets, QtCore
+from PySide6 import QtWidgets, QtCore
 from pyimagetool import ImageTool, RegularDataArray
 
 
